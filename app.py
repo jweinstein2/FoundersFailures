@@ -26,21 +26,18 @@ def handle_response(testing=False):
 
     answers = json_data['form_response']['answers']
 
-    # get all responses
-
-
     # Administrative Information
     email = answers[-1]['email']
     name = answers[0]['text']
 
-    answers = answers[1:15]
-    fields = json_data['form_response']['definition']['fields'][1:15]
+    answers = answers[1:16]
+    fields = json_data['form_response']['definition']['fields'][1:16]
 
     # Analysis
     data = analyze.wealth_control(answers, fields)
 
     # Generate Report
-    generate.generate("Jared Weinstein", data)
+    generate.generate(name, data)
 
     # Send the completed pdf report
 #     subject = "Your Report is Ready"
@@ -51,7 +48,7 @@ def handle_response(testing=False):
 #     """.format(name)
 #     files = ['generated/wealth_vs_control.pdf']
 #     send.sendMail([email], 'Founders Feedback <soccerstar199@gmail.com>', subject, msg, files)
-
+#
     return 'success'
 
 if __name__ == '__main__':

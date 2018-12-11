@@ -1,5 +1,5 @@
-WEALTH = 1
 CONTROL = 0
+WEALTH = 1
 
 def _get_index(answer, field):
     ans = answer['choice']['label']
@@ -11,6 +11,18 @@ def _get_index(answer, field):
     print("INDEX NOT FOUND")
     import pdb; pdb.set_trace()
     return -1
+
+def _extract_questions(fields):
+    qs = []
+    i = 0
+    for f in fields:
+        i += 1
+        dic = {}
+        dic['title'] = "Q{}: {}".format(i, str(f['title']))
+        dic['choices'] = (str(f['choices'][0]['label']),
+                          str(f['choices'][1]['label']))
+        qs.append(dic)
+    return qs
 
 def wealth_control(answers, fields):
     desire = _get_index(answers[-1], fields[-1])
@@ -35,5 +47,6 @@ def wealth_control(answers, fields):
     info["desire"] = desire
     info["wealth"] = WEALTH
     info["control"] = CONTROL
+    info["questions"] = _extract_questions(fields)
 
     return info
