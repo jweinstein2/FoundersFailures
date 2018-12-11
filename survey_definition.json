@@ -1,0 +1,500 @@
+{
+  "id": "vQlUHl",
+  "title": "Wealth/Control",
+  "theme": {
+    "href": "https://api.typeform.com/themes/6lPNE6"
+  },
+  "workspace": {
+    "href": "https://api.typeform.com/workspaces/frbMsV"
+  },
+  "settings": {
+    "is_public": true,
+    "is_trial": false,
+    "language": "en",
+    "progress_bar": "percentage",
+    "show_progress_bar": true,
+    "show_typeform_branding": true,
+    "meta": {
+      "allow_indexing": false
+    },
+    "notifications": {
+      "self": {
+        "recipients": [],
+        "subject": "Typeform: New response for {{form:title}}",
+        "message": "Your typeform {{form:title}} has a new response:\n{{form:all_answers}}\nLog in to view or download your responses at\nhttps://admin.typeform.com/form/vQlUHl/results\n{{link:report}}\nYou can turn off or configure self notifications for this typeform at\nhttps://admin.typeform.com/form/vQlUHl/create/hash/notifications\n\nTeam Typeform\nHow you ask is everything\n\nWant your responses automatically sent to a Google Sheet, MailChimp, Trello, or your own CRM? *Set up an integration to do that and much more:*\nhttps://admin.typeform.com/form/vQlUHl/configure\n",
+        "enabled": false
+      },
+      "respondent": {
+        "recipient": "{{field:80f788fe-7496-49d2-b84d-78d56b31ebbb}}",
+        "subject": "Typeform: Thank you for filling out {{form:title}}",
+        "message": "Hello,\nWe’ve received your submission.\nThank you & have a nice day!",
+        "reply_to": [],
+        "enabled": false
+      }
+    }
+  },
+  "welcome_screens": [
+    {
+      "ref": "c16743c8-ce24-4fc1-8d05-b010e5b82638",
+      "title": "Startup Evaluation",
+      "properties": {
+        "show_button": true,
+        "button_text": "Start"
+      }
+    }
+  ],
+  "thankyou_screens": [
+    {
+      "ref": "default_tys",
+      "title": "Done! Your information was sent perfectly.",
+      "properties": {
+        "show_button": false,
+        "share_icons": false
+      }
+    }
+  ],
+  "fields": [
+    {
+      "id": "fRuHU8tps9tS",
+      "title": "Hi, whats your name?",
+      "ref": "a6951a08-60ff-4712-8ea1-aee924e644a8",
+      "validations": {
+        "required": true
+      },
+      "type": "short_text"
+    },
+    {
+      "id": "hWv9rF0tphXC",
+      "title": "Founder Decisions",
+      "ref": "0551e648-97be-4b65-9835-cd30b6bbf96a",
+      "properties": {
+        "description": "This module presents a series of questions that every founder grapples with in the process of building a company. After completion, a full report will be sent to your email. ",
+        "show_button": true,
+        "button_text": "Continue",
+        "fields": [
+          {
+            "id": "jDsxSXt5EgLL",
+            "title": "Would you rather?",
+            "ref": "ddc33dcf-b6c1-4e3d-9271-378b13711202",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "zoI3lzmUTWQV",
+                  "ref": "2bc2fd06-9f73-49a9-833b-a9b33d35ec34",
+                  "label": "Remain a solo founder"
+                },
+                {
+                  "id": "dPpTBhJH9uxp",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Build co-founding team"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "qQW47QEs9oEd",
+            "title": "Would you rather?",
+            "ref": "d7a92e7b-ad96-450b-8b56-9756b234eca4",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "RsyFJWeLFmjv",
+                  "ref": "2bc2fd06-9f73-49a9-833b-a9b33d35ec34",
+                  "label": "Tap my immediate circle of friends and family to find cofounders"
+                },
+                {
+                  "id": "Y0nMcbWlI2kp",
+                  "ref": "73d7543a-f8bc-4427-8413-c197158fc075",
+                  "label": "Tap both strong and weak/distant ties to find cofounders"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "MILiZULYdV27",
+            "title": "Would you rather?",
+            "ref": "795e3c47-25dc-494b-b75c-4b5b7f3a4374",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "GeSCMHsJuRij",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Keep strong control of decision making"
+                },
+                {
+                  "id": "n4MaJX5NdcAw",
+                  "ref": "8533a39f-0301-488d-9966-b9f3e404926a",
+                  "label": "Share decision-making with cofounder"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "s3mkuuO14uUs",
+            "title": "Would you rather?",
+            "ref": "bd9802a0-4d04-450d-ab2f-4d7d1dbffa4f",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "PzUu99gXDrMY",
+                  "ref": "80db984a-803c-45e0-b6d7-c91cf22ba972",
+                  "label": "Maintain most or all equity ownership"
+                },
+                {
+                  "id": "kLJdLWX4jqYv",
+                  "ref": "797699f6-2748-4624-aa8b-c14296834117",
+                  "label": "Share equity to attract and/or motivate cofounders or critical hires"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "iLPSvUbF6Oyy",
+            "title": "Would you rather?",
+            "ref": "a58f2d61-e15c-46d0-864a-31dc3fdc0183",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "Px5rOoZO0cKU",
+                  "ref": "2bc2fd06-9f73-49a9-833b-a9b33d35ec34",
+                  "label": "Hire within close personal network (friends, family, and others) as required"
+                },
+                {
+                  "id": "ZeH97NjfPjxu",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Aggressively tap broader network (unfamiliar candidates) to find best hires"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "SsQi6eslA3XU",
+            "title": "Would you rather?",
+            "ref": "5ea4749a-fa66-43e1-a9bf-053dd2df8cbb",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "DI3MlrLdIv50",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Keep control of important decisions"
+                },
+                {
+                  "id": "hdR1xFgsajwr",
+                  "ref": "bc7aa89c-1bcc-4f2c-ab50-a1cc5dd8d799",
+                  "label": "Delegate important decision making to appropriate expert"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "yDR7uSnMsrBo",
+            "title": "Would you rather?",
+            "ref": "fa89dd08-6bb8-461c-9bcd-24ca4bd8e67b",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "XXlWdsbRuVEH",
+                  "ref": "2bc2fd06-9f73-49a9-833b-a9b33d35ec34",
+                  "label": "Hire less expensive \"rising star\" (potentially up-and-coming) junior employees"
+                },
+                {
+                  "id": "aqM1xMFL71qD",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Hire more expensive, experienced \"rock star\" employees"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "NXANdgpyVf7o",
+            "title": "Would you rather?",
+            "ref": "c55ae178-e7c8-4d09-8054-6472aad5cb54",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "kxJNWRMkDZXX",
+                  "ref": "2bc2fd06-9f73-49a9-833b-a9b33d35ec34",
+                  "label": "Self-fund; \"bootstrap\""
+                },
+                {
+                  "id": "GatFsjtehZHJ",
+                  "ref": "c42f11f4-5f4a-4196-9f90-91ffab947e20",
+                  "label": "Take outside capital"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "ZdxfyWUwCAaI",
+            "title": "Would you rather?",
+            "ref": "7f30f76f-449d-4838-8549-b83fb647546d",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "CeqgwOk4FWG0",
+                  "ref": "2bc2fd06-9f73-49a9-833b-a9b33d35ec34",
+                  "label": "Raise capital from friends and family or \"money-only\" angels"
+                },
+                {
+                  "id": "djuIvxxasyUL",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Target experienced angels or venture capitalists"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "VkhUMMXGkNeM",
+            "title": "Would you rather?",
+            "ref": "30e02b55-fba3-42e6-882e-1d79e0fc3ea8",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "f7oSeGf5QzlD",
+                  "ref": "adfcef17-bc81-44a3-b2a4-6c4bce5238d4",
+                  "label": "Resist terms (e.g., supermajority rights) that threaten your control"
+                },
+                {
+                  "id": "bzV7wnJtPyuO",
+                  "ref": "ff5dd299-8b02-4a06-ad30-5631f61be4a9",
+                  "label": "Openness to terms necessary to attract best investors (e.g., giving them supermajority rights)"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "g9oxdkvrVC9w",
+            "title": "Would you rather?",
+            "ref": "c03dfb35-aa46-4731-bd2b-d9ece3bb66f4",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "azY7SPXrCxFy",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Resist giving up the CEO position"
+                },
+                {
+                  "id": "w4AV8Fb93iWr",
+                  "ref": "d443cb94-5884-4483-aa3e-080fb38ae8b3",
+                  "label": "Be open to giving up CEO position if the next stage of growth might be beyond my capabilities"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "vnNMV7zDDjIh",
+            "title": "Would you rather?",
+            "ref": "702f5b41-5803-4454-90ee-392896996739",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "edhQq9HEO0Ii",
+                  "ref": "c0e669a8-c77a-4572-ac2b-7a6efe1b98fe",
+                  "label": "After I am replaced as founder-CEO, I would prefer to leave the company"
+                },
+                {
+                  "id": "h3gZn5Kk8mI1",
+                  "ref": "46fa3290-b06d-445e-b020-b2401838bac2",
+                  "label": "After I am replaced as founder-CEO, I would like to have a non-CEO role (one that is aligned with my interests) in my company"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "IAQgXtCOxTpV",
+            "title": "Would you rather?",
+            "ref": "f3325596-7a90-4bb9-9bbb-44c900b99177",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "f74NaioYJ3zl",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Preferred rate of startup growth: Gradual to Moderate"
+                },
+                {
+                  "id": "NXAOGx60qMVx",
+                  "ref": "dc11bfef-eb32-4e0b-94e1-2a3f6fc893b4",
+                  "label": "Preferred rate of startup growth: Fast to Explosive"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "ZtaPKhAYvD1q",
+            "title": "When would you rather found?",
+            "ref": "1abfabc4-dfeb-40a9-bd2f-597412df1824",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "BvamEDYfyI0M",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "Wait until I am well equipped with skills and experience to launch and build startup without much help"
+                },
+                {
+                  "id": "Dh3gfJsOEmGd",
+                  "ref": "65276c8b-b642-41f1-873b-3192e4c32e3c",
+                  "label": "I'm okay with having important gaps that should be filled by involving others"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          },
+          {
+            "id": "IRdum1N08oev",
+            "title": "Whats your preferred outcome?",
+            "ref": "0fa37baa-6d05-45ba-af36-dbc85603c86a",
+            "properties": {
+              "randomize": false,
+              "allow_multiple_selection": false,
+              "allow_other_choice": false,
+              "vertical_alignment": true,
+              "choices": [
+                {
+                  "id": "WmP7TMMWvE4b",
+                  "ref": "ca4b74d0-847b-4b18-9a0f-00c29294f16e",
+                  "label": "I'd rather found a venture worth $5m, of which I own 100%"
+                },
+                {
+                  "id": "s1m5it6t5OMC",
+                  "ref": "fef6952a-7e7c-49da-b3a9-cb1f4218bcfb",
+                  "label": "I'd rather found a venture worth $100m, of which I own 5%"
+                }
+              ]
+            },
+            "validations": {
+              "required": true
+            },
+            "type": "multiple_choice"
+          }
+        ]
+      },
+      "type": "group"
+    },
+    {
+      "id": "V9e3wC0aUvKP",
+      "title": "Whats your email?",
+      "ref": "80f788fe-7496-49d2-b84d-78d56b31ebbb",
+      "properties": {
+        "description": "We'll send you the results shortly."
+      },
+      "validations": {
+        "required": true
+      },
+      "type": "email"
+    }
+  ],
+  "_links": {
+    "display": "https://jaredweinstein.typeform.com/to/vQlUHl"
+  }
+}

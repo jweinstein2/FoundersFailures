@@ -13,7 +13,9 @@ WEALTH = 1
 desire_string = {0: "control",
                  1: "wealth"}
 
-def generate(name, data, saveloc = 'generated/wealth_vs_control'):
+def generate(name, data):
+    id = random.randint(1000,9999)
+    saveloc = 'generated/wealth_vs_control({})'.format(id)
     geometry_options = {}
     doc = Document(geometry_options=geometry_options, page_numbers=False)
 
@@ -21,7 +23,8 @@ def generate(name, data, saveloc = 'generated/wealth_vs_control'):
 
     header = PageStyle("header")
     with header.create(Head("R")):
-        header.append(bold(str(random.randint(100, 999))))
+        header.append(bold(str(id)))
+        header.append(LineBreak())
         header.append(italic("Prepared for {}".format(name)))
         header.append(LineBreak())
         header.append(italic(datetime.now().strftime("%B %d, %Y")))
@@ -40,7 +43,7 @@ def generate(name, data, saveloc = 'generated/wealth_vs_control'):
         with doc.create(Section("Consistency")):
             doc.append('Congratulations, your decisions are completely consistent and aligned with your motivations! You\'re on the right path towards achieving ' + desire_str + '. Be careful though. Rarely, are decisions as clear cut as presented in this module. In addition, there are a vast number of potential dilemmas outside of those discussed here. We are currently working on building out more sections.')
         doc.generate_pdf(saveloc)
-        return
+        return saveloc
 
     add_consistency(doc, data, n_control, n_wealth, n_total, desire_str)
 
@@ -59,16 +62,16 @@ def generate(name, data, saveloc = 'generated/wealth_vs_control'):
         doc.append(italic("Anticipating and Avoiding the Pitfalls That Can Sink a Startup. "))
         doc.append("Princeton University Pr, 2013.")
 
-    doc.generate_pdf('generated/wealth_vs_control')
+    doc.generate_pdf(saveloc)
+    return saveloc
 
 
 
 # Section information
 def add_summary(doc, data):
     with doc.create(Section("Overview")):
-        doc.append("""Wealth and control are the two most common motivators for entrepreneurs. Yet, there is an inverse correlation between achieving each.[1] Owning a valuable startup is an unusual outcome that few can achieve. More commonly, founders must make choices that achieve one goal at the expense of the other.""")
+        doc.append("""Wealth and control are the two most common motivators for entrepreneurs. Yet, there is an inverse correlation between achieving each.[1] Maintaining control of a valuable startup is an unusual outcome that few can achieve. More commonly, founders must make choices that achieve one goal at the expense of the other.""")
     with doc.create(Section('Preferred Outcome')):
-        doc.append('Understanding your desired outcome helps to make consistent, effective decisions. ')
         if data["desire"] == WEALTH:
             doc.append('You are primarily motivated by wealth. According to data from the Kauffman Foundation\'s study of 549 founders, 75% of respondents were also motivated to build wealth. 64% were motivated by owning their own business.[2] Unfortunately, in order to achieve wealth you must sacrifice control. Attracting the resources required for success means giving up assets.')
         else:
@@ -76,10 +79,12 @@ def add_summary(doc, data):
 
 def add_consistency(doc, data, n_control, n_wealth, n_total, desire_str):
     with doc.create(Section('Consistency')):
-        doc.append('Founders that attempt to achieve both wealth and control are more likely to fail at both. Similarly, you should avoid making decisions that alternate between wealth and control. Consistent decisions give you the best chance of achieving {}. '.format(desire_str))
+        doc.append('Consistent decisions give you the best chance of achieving {}. Avoid making decisions that alternate between wealth and control.'.format(desire_str))
 
-        doc.append('You made control oriented decisions {} / {} times and and decisions in favor of wealth {} / {} times. '.format(n_control, n_total, n_wealth, n_total))
-        if n_control > n_wealth is not desire_str == "wealth":
+        doc.append('You made control oriented decisions {} / {} times and decisions in favor of wealth {} / {} times. '.format(n_control, n_total, n_wealth, n_total))
+        if n_control > n_wealth and data["desire"] == CONTROL:
+            doc.append('On average, your decisions align with your overall goal. ')
+        if n_wealth > n_control and data["desire"] == WEALTH:
             doc.append('On average, your decisions align with your overall goal. ')
         else:
             doc.append('On average, you are making decisions that prevent you from achieving your goal. It is worth reconsidering your decisions or your desired outcome.')
@@ -117,11 +122,12 @@ def add_breakdown(doc, data, desire, answers, inconsistent):
 
         with doc.create(Figure(position='h!')) as plot:
             plot.add_plot(width=NoEscape(r'1\textwidth'), dpi=300)
+            plot.add_caption('Red indicates decisions you may want to reconsider.')
         add_inconsistent(doc, data, inconsistent)
 
 def add_inconsistent(doc, data, inc):
     for i in range(len(inc)):
-        if inc[i] != 0: inc[i] = i
+        if inc[i] != 0: inc[i] = i + 1
     inconsistent = [inc[0:4], inc[4:7], inc[7:10], inc[10:12], inc[12:14]]
     intro = "Choose cofounders wisely. Founding together is a relationship comparable to marriage. Partners have the potential to bring success or make failure inevitable. "
     section(doc, data, inconsistent[0], 'Cofounders', intro)
@@ -129,10 +135,10 @@ def add_inconsistent(doc, data, inc):
     intro = "Like you, the best hires will often seek wealth or control but can introduce vital ideas and resources. "
     section(doc, data, inconsistent[1], 'Hires', intro)
 
-    intro = "Not all money is good money. Who you take capital from is just as import as you hire and who you cofound with. "
+    intro = "Not all money is good money. Who you take capital from is just as important as you hire and who you cofound with. "
     section(doc, data, inconsistent[2], 'Investors', intro)
 
-    intro = "As the company grows and changes over time, the CEO must often change as well. How and when this happen are decisions to consider early. "
+    intro = "As the company grows and changes over time, the CEO must often change as well. How and when this happens are decisions to consider early. "
     section(doc, data, inconsistent[3], 'Successors', intro)
 
     section(doc, data, inconsistent[4], 'Other Factors', None)
@@ -154,43 +160,43 @@ def section(doc, data, inconsistent, name, intro):
 
         for q in inconsistent:
             if q != 0:
-                add_question(doc, data['desire'], data['questions'][q])
+                add_question(doc, data['desire'], data['questions'][q - 1])
                 if data['desire'] == CONTROL:
-                    doc.append("Why you should reconsider: " + w_exp[q])
+                    doc.append("Why you should reconsider: " + w_exp[q - 1])
                 if data['desire'] == WEALTH:
-                    doc.append("Why you should reconsider: " + c_exp[q])
+                    doc.append("Why you should reconsider: " + c_exp[q - 1])
                 doc.append(VerticalSpace("3mm"))
 
-w_exp = ["only 16.1% of high-potential startups are solo-founded. Adding cofounders can provide crucial knowledge, network connections, and financial capital.",
+c_exp = ["only 16.1% of high-potential startups are solo-founded. Adding cofounders can provide crucial knowledge, network connections, and financial capital.",
          "close relationships often skew equity splits and introduce potential misalignment. What makes sense socially doesn't always make sense for the business.",
          "cofounders with complementary skills can make better decisions than solo-founders.",
          "distributing equity attracts better talent and motivates cofounders to work towards shared success.",
          "searching broader networks can bring in intellectual capital to bolster your chances at a wealthy outcome.",
          "delegating decisions allows you to scale rapidly and sustain explosive growth",
-         "expensive employees are well worth the money if they have a large impact on the succesful outcome of your venture",
+         "expensive employees are well worth the money if they have a large impact on the successful outcome of your venture",
          "money often comes with access to networks and wisdom that you may otherwise lack.",
-         "experienced angels and venture capitalists have more expertise to guide the business towards a succesful outcome.",
-         "if you refuse to suceede control, you will inevitably lose the best investors that demand decision making power.",
+         "experienced angels and venture capitalists have more expertise to guide the business towards a successful outcome.",
+         "if you refuse to succeed control, you will inevitably lose the best investors that demand decision making power.",
          "the success of your company often rests on the quality of your board. Consider giving up control to acquire a better board.",
          "likely there is a CEO more qualified than yourself. A professional CEO provides lots of financial value.",
          "consider picking up a role that is more closely aligned with your skills. Being open to succession means others can help provide value to the venture.",
          "it might be in your best interest to scale quickly. Fast growth builds financial value.",
-         "seeking outside help lets you fill in personal weekness."]
+         "seeking outside help lets you fill in personal weakness."]
 
-c_exp = ["16.1% of high-potential startups are solo-founded. Solo-founding allows you to own more equity and own important decisions.",
-         "You may be able to negotiate for more control if you are negotiating with friends and family.",
-         "Although sharing the decision process can lead to better results, you may be forced into decisions that you don't agree with.",
-         "Share equity and you risk losing control.",
-         "Hiring people you know well means there is less risk of decisions that differ radically from yours",
-         "Delegating allows you to scale but at the cost of control",
-         "Junior employees generally have less desire and skill to control decision making like their experienced counterparts.",
-         "Outside capital comes with conditions like board seats and increases your chances of getting replaced or forced out.",
-         "Friends and family care about you're success over the business and won't force a succession of power.",
-         "The best investors have more bargaining power and will want to control the direction of the venture.",
-         "Holding onto the CEO title puts you in a position to make more decisions.",
-         "Refusing to accept a non-CEO role makes it harder to remove and replace you smoothly.",
-         "With gradual growth you have more time to be involved in more decisions. Explosive growth and this influence is unsustainable.",
-         "The more skills you can provide, the less you need to rely on others who want to control the company as well."]
+w_exp = ["16.1% of high-potential startups are solo-founded. Solo-founding allows you to own more equity and own important decisions.",
+         "you may be able to negotiate for more control if you are negotiating with friends and family.",
+         "although sharing the decision process can lead to better results, you may be forced into decisions that you don't agree with.",
+         "share equity and risk losing control.",
+         "hiring people you know well means there is less risk of decisions that differ radically from yours",
+         "delegating allows you to scale but at the cost of control",
+         "junior employees generally have less desire and skill to control decision making like their experienced counterparts.",
+         "outside capital comes with conditions like board seats and increases your chances of getting replaced or forced out.",
+         "friends and family are less likely to force a succession of power because of social dynamics.",
+         "the best investors have more bargaining power and will want to control the direction of the venture.",
+         "holding onto the CEO title puts you in a position to make more decisions.",
+         "refusing to accept a non-CEO role makes it harder to remove and replace you smoothly.",
+         "with gradual growth you have more time to be involved in more decisions. Explosive growth and this influence is unsustainable.",
+         "the more skills you can provide, the less you need to rely on others who want to control the company as well."]
 
 def add_question(doc, desire, attributes):
     with doc.create(Center()) as centered:
@@ -198,9 +204,9 @@ def add_question(doc, desire, attributes):
             page.append(SmallText(attributes['title']))
             wealth = "- " + attributes['choices'][WEALTH]
             control = "- " + attributes['choices'][CONTROL]
-            if desire == WEALTH:
+            if desire == CONTROL :
                 wealth = bold(wealth + " (your choice)")
-            if desire == CONTROL:
+            if desire == WEALTH:
                 control = bold(control + " (your choice)")
 
             for a in random.sample([wealth, control], 2):

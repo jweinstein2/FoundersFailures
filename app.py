@@ -6,8 +6,6 @@ import analyze, generate, send
 app = Flask(__name__)
 CORS(app)
 
-"9fy29EsGXLZL3bZ1uhzn8qqxYQsvw7PePtajFSGFFEb3"
-
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
@@ -37,16 +35,16 @@ def handle_response(testing=False):
     data = analyze.wealth_control(answers, fields)
 
     # Generate Report
-    generate.generate(name, data)
+    loc = generate.generate(name, data)
 
     # Send the completed pdf report
     subject = "Your Report is Ready"
     msg = """
 Dear {},
 
-Thank you for taking the time to fill out our survey. Below you will find attached the pdf document that summarizes your results. Please take 5 minutes to evaluate the report at https://jaredweinstein.typeform.com/to/NMb5sE".
+Attached is the pdf document that summarizes your results. After reading, complete the post-evaluation here: https://jaredweinstein.typeform.com/to/NMb5sE
     """.format(name)
-    files = ['generated/wealth_vs_control.pdf']
+    files = [loc + '.pdf']
     send.sendMail([email], 'Founders Feedback <soccerstar199@gmail.com>', subject, msg, files)
 
     return 'success'
