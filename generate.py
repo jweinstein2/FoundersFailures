@@ -21,6 +21,7 @@ def generate(name, data, saveloc = 'generated/wealth_vs_control'):
 
     header = PageStyle("header")
     with header.create(Head("R")):
+        header.append(bold(str(random.randint(100, 999))))
         header.append(italic("Prepared for {}".format(name)))
         header.append(LineBreak())
         header.append(italic(datetime.now().strftime("%B %d, %Y")))
@@ -156,6 +157,9 @@ def section(doc, data, inconsistent, name, intro):
                 add_question(doc, data['desire'], data['questions'][q])
                 if data['desire'] == CONTROL:
                     doc.append("Why you should reconsider: " + w_exp[q])
+                if data['desire'] == WEALTH:
+                    doc.append("Why you should reconsider: " + c_exp[q])
+                doc.append(VerticalSpace("3mm"))
 
 w_exp = ["only 16.1% of high-potential startups are solo-founded. Adding cofounders can provide crucial knowledge, network connections, and financial capital.",
          "close relationships often skew equity splits and introduce potential misalignment. What makes sense socially doesn't always make sense for the business.",
@@ -192,12 +196,12 @@ def add_question(doc, desire, attributes):
     with doc.create(Center()) as centered:
         with centered.create(MiniPage(width=r"0.85\textwidth")) as page:
             page.append(SmallText(attributes['title']))
-            wealth = attributes['choices'][WEALTH]
-            control = attributes['choices'][CONTROL]
+            wealth = "- " + attributes['choices'][WEALTH]
+            control = "- " + attributes['choices'][CONTROL]
             if desire == WEALTH:
-                wealth = bold("* " + wealth)
+                wealth = bold(wealth + " (your choice)")
             if desire == CONTROL:
-                control = bold("* " + control)
+                control = bold(control + " (your choice)")
 
             for a in random.sample([wealth, control], 2):
                 page.append(NewLine())

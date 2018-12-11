@@ -40,19 +40,19 @@ def handle_response(testing=False):
     generate.generate(name, data)
 
     # Send the completed pdf report
-#     subject = "Your Report is Ready"
-#     msg = """
-# Dear {},
-#
-# Thank you for taking the time to fill out our survey. Below you will find attached the pdf document that summarizes your results. Please provide feedback at the link below.
-#     """.format(name)
-#     files = ['generated/wealth_vs_control.pdf']
-#     send.sendMail([email], 'Founders Feedback <soccerstar199@gmail.com>', subject, msg, files)
-#
+    subject = "Your Report is Ready"
+    msg = """
+Dear {},
+
+Thank you for taking the time to fill out our survey. Below you will find attached the pdf document that summarizes your results. Please take 5 minutes to evaluate the report at https://jaredweinstein.typeform.com/to/NMb5sE".
+    """.format(name)
+    files = ['generated/wealth_vs_control.pdf']
+    send.sendMail([email], 'Founders Feedback <soccerstar199@gmail.com>', subject, msg, files)
+
     return 'success'
 
 if __name__ == '__main__':
-    testing = True
+    testing = False
 
     if not testing:
         app.run(debug=True)
